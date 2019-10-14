@@ -21,9 +21,9 @@ const initializeUsers = async () => {
 
 
   const addUser = async (props) => {
-    const { name, email, password, date, type, about_me, experience,adress  } = props;
-    console.log("addUsersWithName",  name, email, password, date, type, about_me, experience,adress)
-    if (!props || !name || !email || !password || !date|| !type||!about_me||!experience||!adress ) {
+    const { name, email, password, aboutme, experience, date, address  } = props;
+    console.log("addUsersWithName",  name, email, password, aboutme, experience, date, address)
+    if (!props || !name || !email || !password || !aboutme||!experience || !date||!address ) {
       throw new Error("you must fill all fields");
     }
     try {
@@ -31,7 +31,7 @@ const initializeUsers = async () => {
      // console.log(`INSERT INTO users (first_name, last_name, email,phone_number password, address, postel_code, city ) Values ( ${name} , ${last_name} , ${email} , ${password} , ${phone_number} , ${adress} , ${postel_code} , ${city})`
      // )
       const result = await db.run(
-        `INSERT INTO users (name,email,password,date,type,about_me,experience,adress ) Values ( '${name}' , '${email}' , '${password}' , '${date}' ,  '${type}' , '${about_me}','${experience}','${adress}')`
+        `INSERT INTO users (name, email, password, aboutme, experience, date, address ) Values ( '${name}' , '${email}' , '${password}' , '${aboutme}' ,'${experience}', '${date}','${address}')`
       );
       const id = result.stmt.lastID;
       return id;
@@ -44,7 +44,7 @@ const initializeUsers = async () => {
   const deleteUsers = async (id)  => {
     try {
       const result = await db.run(
-        SQL`Delete FROM users where users_id = ${id}`
+        SQL`Delete FROM users where user_id = ${id}`
       );
       if (result.stmt.changes === 0) {
         throw new Error(`could not delete user with id = ${id} or wrong id`);
@@ -57,13 +57,13 @@ const initializeUsers = async () => {
 
 
   const updateUsers = async (id,  props) => {
-    const {name, email, password, date, type, about_me, experience,adress} = props;
+    const {name, email, password, aboutme, experience, date, address } = props;
       try {
     if (!id ||  (!id || !props) || !props) {
       throw new Error("you must provide an id and/or one of the inputs");
     }
     
-      const stmt = `UPDATE users SET name=("${name}"), email=("${email}"), password=("${password}"), date=("${date}"), type=("${type}"), about_me=("${about_me}"),experience=("${experience}") , adress=("${adress}") WHERE users_id=(${id})`;
+      const stmt = `UPDATE users SET name=("${name}"), email=("${email}"), password=("${password}"), date=("${date}"), aboutme=("${aboutme}"),experience=("${experience}") , address=("${address}") WHERE user_id=(${id})`;
       const result = await db.all(stmt);
       return (result);
     } catch (err) {

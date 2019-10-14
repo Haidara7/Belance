@@ -1,18 +1,35 @@
 import app from "./app";
 import initializeUsers from "./db/users"
 import initializeProjects from "./db/projects"
+import initializeProfileImg from "./db/profile_img"
 
 import { isloggedIn, authenticateUser, logout } from "./auth.js";
+import multer from 'multer'
+
 import path from 'path'
 import verifyToken from "./db/verfiy"
 //import jwt from 'jsonwebtoken'
 
 
+const multerStorage = multer.diskStorage({
+  destination: path.join(__dirname, '../public/images'),
+  filename: (req,file, cb)=>{
+    const {originalname} = file;
+    const date =Date.now()
+    const filename = `${date}-${originalname}`;
+    cb(null, filename)
+  }
+
+})
+
+const upload = multer({storage: multerStorage})
+
+
+
 
 const start = async () => {
-
+  const controller1 = await initializeProfileImg();
   const controller3 = await initializeUsers();
-
   const controller4 = await initializeProjects();
 
 
@@ -32,9 +49,9 @@ const start = async () => {
   app.post('/api/adduser', async (req, res, next) => {
 
     try {
-      const { name, email, password, date, type, about_me, experience, adress } = req.body
+      const { name, email, password, aboutme, experience, date, address } = req.body
 
-      const user = await controller3.addUser({ name, email, password, date, type, about_me, experience, adress })
+      const user = await controller3.addUser({ name, email, password, aboutme, experience, date, address })
       res.send({ NewUser: user, status: true })
     } catch (err) {
       next(err)
@@ -58,9 +75,9 @@ const start = async () => {
 
     try {
       const { id } = req.params;
-      const { name, email, password, date, type, about_me, experience, adress } = req.body;
+      const { name, email, password, aboutme, experience, date, address } = req.body;
       const result = await controller3.updateUsers(id, {
-        name, email, password, date, type, about_me, experience, adress
+        name, email, password, aboutme, experience, date, address
 
       });
       res.json({ success: true, result });
@@ -71,17 +88,18 @@ const start = async () => {
   });
   ////////////////projects
 
-  app.post('/projects/create', async (req, res, next) => {
+  app.post('/api/projects/create', async (req, res, next) => {
     try {
-      const { users_id, title } = req.body;
-      const result = await controller4.createproject({ users_id, title });
+      const { user_id, title, date } = req.body;
+      console.log("hello", user_id, title, date)
+      const result = await controller4.createproject({ user_id, title, date });
       res.json({ done: true, result });
     } catch (err) {
       next(err);
     }
   });
 
-  app.get("/projects/list", async (req, res) => {
+  app.get("/api/projects/list", async (req, res) => {
 
     const projects = await controller4.getProjects()
     res.json({
@@ -89,8 +107,8 @@ const start = async () => {
     })
   });
 
-  app.post('projects/delete/:id', async (req, res, next) => {
-
+  app.post('/api/projects/delete/:id', async (req, res, next) => {
+    console.log("here")
     try {
       const { id } = req.params;
       const result = await controller4.deleteProjects(id);
@@ -101,10 +119,79 @@ const start = async () => {
     }
   });
 
-  
+
+  app.post('/api/projects/update/:id', async (req, res, next) => {
+
+    try {
+      const { id } = req.params;
+      const { title} = req.body;
+      const result = await controller4.updateProjects(id, {
+        title
+
+      });
+      res.json({ success: true, result });
+      return (result);
+    } catch (err) {
+      next(err);
+    }
+  });
 
 
   
+//////////////// PROFILE IMAGE
+
+app.post('/api/profileimg/create',  upload.single('image'), async (req, res, next) => {
+  try {
+   // console.log(req.body)
+    const { user_id} = req.body;
+    const title = req.file && req.file.filename
+    console.log("title",title)
+    const result = await controller1.createProfileImg({
+     title, user_id
+    });
+    res.json({success: true, result});
+  } catch (err) {
+    next(err);
+  }
+});
+
+
+app.get('/api/profileimg/get/:id', async (req, res, next) => {
+  try {
+    const {id} = req.params;
+    const result = await controller1.getprofileimg(id);
+    res.json({success: true, result});
+  } catch (err) {
+    next(err);
+  }
+});
+
+app.post('/api/profileimg/update',  upload.single('image'), async (req, res, next) => {
+  try {
+   // console.log(req.body)
+    const { user_id} = req.body;
+    const title = req.file && req.file.filename
+    console.log("title",title)
+    const result = await controller1.updateProfileImg({
+     title, user_id
+    });
+    res.json({success: true, result});
+  } catch (err) {
+    next(err);
+  }
+});
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -172,8 +259,8 @@ const start = async () => {
 
   app.listen(5001
     , () => {
-    console.log("server listening on port 8080");
-  });
+      console.log("server listening on port 8080");
+    });
 };
 start();
 //export default app;

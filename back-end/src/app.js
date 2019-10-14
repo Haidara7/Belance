@@ -4,7 +4,7 @@ import express from 'express'
 // import favicon from 'serve-favicon' // serves favicon
 //import cors from 'cors' // allows cross-domain requests
 import createError from 'http-errors' // better JS errors
-//import path from 'path'
+import path from 'path'
 var bodyParser = require('body-parser');
 
 const app = express(); // create a new app
@@ -19,7 +19,7 @@ app.use(express.json()); // allows POST requests with JSON
 app.use(express.urlencoded({ extended: false })); // allows POST requests with GET-like parameters
 //app.use(cookieParser()); // Parses cookies
 // app.use(favicon(path.join(__dirname, '../public', 'favicon.ico'))) // <-- location of favicon
-//app.use(express.static(path.join(__dirname, '../public'))); // <-- location of public dir
+app.use(express.static(path.join(__dirname, '../public'))); // <-- location of public dir
 app.use(bodyParser.json());
 app.use(session({ // handles sessions
   secret: 'keyboard cat', // <-- this should be a secret phrase

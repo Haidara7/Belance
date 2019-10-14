@@ -3,33 +3,31 @@ import SQL from "sql-template-strings";
 
 
 const initializeProjects = async () => {
-  // const db = await sqlite.open("./belance.sqlite");
+  const db = await sqlite.open("./belence1.sqlite");
 
 
   const createproject = async (props) => {
-    const { users_id ,title  } = props;
-    console.log("CreateProjectWith",  users_id,title)
-    if (!props || !users_id || !title  ) {
+    const { user_id, title, date } = props;
+    console.log("CreateProjectWith", user_id, title, date)
+    if (!props || !user_id || !title || !date) {
       throw new Error("you must fill all fields");
     }
     try {
-      // const date = nowForSQLite();
-     // console.log(`INSERT INTO users (first_name, last_name, email,phone_number password, address, postel_code, city ) Values ( ${name} , ${last_name} , ${email} , ${password} , ${phone_number} , ${adress} , ${postel_code} , ${city})`
-     // )
+      
       const result = await db.run(
-        `INSERT INTO projects (users_id , title ) Values ( ${users_id} , '${title}')`
+        `INSERT INTO projects (user_id , title, date ) Values ( ${user_id} , '${title}', '${date}')`
       );
       const id = result.stmt.lastID;
       return id;
     } catch (err) {
       console.log(err)
-      throw new Error("cannot insert this teaxt");
+      throw new Error("cannot insert this text");
     }
   };
 
   const getProjects = async props => {
     try {
-      let stmt = SQL`SELECT * FROM users INNER JOIN projects ON users.users_id = projects.users_id`;
+      let stmt = SQL`SELECT * FROM users INNER JOIN projects ON users.user_id = projects.user_id`;
       const rows = await db.all(stmt);
       return rows;
     }
@@ -40,13 +38,13 @@ const initializeProjects = async () => {
   };
 
 
-  const deleteProjects = async (id)  => {
+  const deleteProjects = async (id) => {
     try {
       const result = await db.run(
-        SQL`Delete FROM projects where users_id = ${id}`
+        SQL`Delete FROM projects where project_id = ${id}`
       );
       if (result.stmt.changes === 0) {
-        throw new Error(`could not delete user with id = ${id} or wrong id`);
+        throw new Error(`could not delete project with id = ${id} or wrong id`);
       }
       return true;
     } catch (err) {
@@ -54,6 +52,21 @@ const initializeProjects = async () => {
     }
   };
 
+
+  const updateProjects = async (id, props) => {
+    const { title  } = props;
+    try {
+      if (!id || (!id || !props) || !props) {
+        throw new Error("you must provide an id and/or one of the inputs");
+      }
+
+      const stmt = `UPDATE projects SET title=("${title}") WHERE project_id=(${id})`;
+      const result = await db.all(stmt);
+      return (result);
+    } catch (err) {
+      throw new Error("Can't update user account")
+    }
+  };
 
 
 
@@ -106,8 +119,9 @@ const initializeProjects = async () => {
   const controller4 = {
     createproject,
     getProjects,
-    deleteProjects
-    
+    deleteProjects,
+    updateProjects
+
 
   };
   return controller4;
