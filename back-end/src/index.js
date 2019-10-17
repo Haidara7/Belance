@@ -2,6 +2,7 @@ import app from "./app";
 import initializeUsers from "./db/users"
 import initializeProjects from "./db/projects"
 import initializeProfileImg from "./db/profile_img"
+import initializeProjectImg from "./db/project_img"
 
 import { isloggedIn, authenticateUser, logout } from "./auth.js";
 import multer from 'multer'
@@ -29,6 +30,7 @@ const upload = multer({storage: multerStorage})
 
 const start = async () => {
   const controller1 = await initializeProfileImg();
+  const controller2 = await initializeProjectImg();
   const controller3 = await initializeUsers();
   const controller4 = await initializeProjects();
 
@@ -182,6 +184,94 @@ app.post('/api/profileimg/update',  upload.single('image'), async (req, res, nex
 });
 
 
+app.post('/api/profileimg/delete/:id', async (req, res, next) => {
+  console.log("here")
+
+  try {
+    const {id} = req.params;
+    const result = await controller1.deleteProfileIMG(id);
+    res.json({success: true, result});
+    console.log()
+  } catch (err) {
+    next(err);
+  }
+});
+
+
+////////////////////// PROJECT IMG
+
+
+
+app.post('/api/projectimg/create', upload.array('photos',10), async (req, res, next) => {
+  try {
+   // console.log(req.body)
+    const { project_id} = req.body;
+    const title = req['files'].map(item=>{
+      return item['filename'];
+    })
+  
+    const result = await controller2.createProjectImg({
+     title, project_id
+    });
+    res.json({success: true, result});
+  } catch (err) {
+    next(err);
+  }
+});
+
+
+app.post('/api/projectimg/update',  upload.single('image'), async (req, res, next) => {
+  try {
+   // console.log(req.body)
+    const { image_id} = req.body;
+    const title = req.file && req.file.filename
+    console.log("title",title)
+    const result = await controller2.updateProjectImg({
+     title, image_id
+    });
+    res.json({success: true, result});
+  } catch (err) {
+    next(err);
+  }
+});
+
+app.post('/api/projectimg/deletealbum/:id', async (req, res, next) => {
+  console.log("here")
+
+  try {
+    const {id} = req.params;
+    const result = await controller2.deleteProjectImgAlbum(id);
+    res.json({success: true, result});
+    console.log()
+  } catch (err) {
+    next(err);
+  }
+});
+
+app.post('/api/projectimg/deleteimg/:id', async (req, res, next) => {
+  console.log("here")
+
+  try {
+    const {id} = req.params;
+    const result = await controller2.deleteProjectImgById(id);
+    res.json({success: true, result});
+    console.log()
+  } catch (err) {
+    next(err);
+  }
+});
+
+
+app.get('/api/projectimg/getlist/:id', async (req, res, next) => {
+  try {
+    const {id} = req.params;
+    const result = await controller2.getprojectimg(id);
+    res.json({success: true, result});
+  } catch (err) {
+    next(err);
+  }
+});
+
 
 
 
@@ -259,7 +349,7 @@ app.post('/api/profileimg/update',  upload.single('image'), async (req, res, nex
 
   app.listen(5001
     , () => {
-      console.log("server listening on port 8080");
+      console.log("server listening on port 5001");
     });
 };
 start();

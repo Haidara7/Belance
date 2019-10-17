@@ -37,7 +37,7 @@ const initializeUsers = async () => {
       return id;
     } catch (err) {
       console.log(err)
-      throw new Error("cannot insert this teaxt");
+      throw new Error("cannot insert this text");
     }
   };
 

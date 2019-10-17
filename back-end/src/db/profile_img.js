@@ -55,6 +55,20 @@ const initializeProfileImg = async () => {
     };
 
 
+    const deleteProfileIMG = async (id)  => {
+      try {
+        const result = await db.run(
+          SQL`Delete FROM images_profile where image_id = ${id}`
+        );
+        if (result.stmt.changes === 0) {
+          throw new Error(`could not delete image with id = ${id} or wrong id`);
+        }
+        return true;
+      } catch (err) {
+        throw new Error("could not delete ");
+      }
+    };
+
 
 
 
@@ -70,7 +84,8 @@ const initializeProfileImg = async () => {
 const controller1 = {
     createProfileImg,
     getprofileimg,
-    updateProfileImg
+    updateProfileImg,
+    deleteProfileIMG
    };
    return controller1;
  };
