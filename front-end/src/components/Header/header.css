@@ -1,0 +1,25 @@
+.logo {
+  
+  
+    float: left;
+    width: 130px;
+    
+   
+  
+} 
+/* 
+.navbar-dark {
+    background-color: black;
+} */
+
+/* .default-color {
+  background-color: black;
+}
+
+.navbar-dark default-color navbar navbar-expand-md {
+    background-color: black;
+} */
+
+.navbar {
+    padding: 0px;
+}
