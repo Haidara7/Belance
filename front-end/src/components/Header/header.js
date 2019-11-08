@@ -16,24 +16,23 @@ toggleCollapse = () => {
 
 render() {
   return (
-    <Router>
       <MDBNavbar color="black" dark expand="md" >
         <MDBNavbarBrand>
           {/* <strong className="white-text">Navbar</strong> */}
-          <MDBNavLink to="/home">  <img className="logo" src={logo}/></MDBNavLink>
+          <MDBNavLink to="/">  <img className="logo" src={logo}/></MDBNavLink>
 
         </MDBNavbarBrand>
         <MDBNavbarToggler onClick={this.toggleCollapse} />
         <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
           <MDBNavbarNav left>
           <MDBNavItem>
-              <MDBNavLink to="#!">Create</MDBNavLink>
+              <MDBNavLink to="/NewProject">Create</MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
-              <MDBNavLink to="#!">Designers</MDBNavLink>
+              <MDBNavLink to="Designerslist">Designers</MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
-              <MDBNavLink to="#!">Profile</MDBNavLink>
+              <MDBNavLink to="Profile">Profile</MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
               {/* <MDBDropdown>
@@ -51,17 +50,15 @@ render() {
           </MDBNavbarNav>
           <MDBNavbarNav right>
             <MDBNavItem>
-              <MDBNavLink className="waves-effect waves-light" to="#!">
-                <MDBIcon fab icon="twitter" />
-              </MDBNavLink>
+              <MDBNavLink className="waves-effect waves-light" to="Messages">
+              <i class="far fa-envelope"></i>              </MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
               <MDBNavLink className="waves-effect waves-light" to="#!">
-                <MDBIcon fab icon="google-plus-g" />
-              </MDBNavLink>
+              <i class="fas fa-sign-out-alt"></i>              </MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
-              <MDBDropdown>
+              {/* <MDBDropdown>
                 <MDBDropdownToggle nav caret>
                   <MDBIcon icon="user" />
                 </MDBDropdownToggle>
@@ -71,12 +68,11 @@ render() {
                   <MDBDropdownItem href="#!">Something else here</MDBDropdownItem>
                   <MDBDropdownItem href="#!">Something else here</MDBDropdownItem>
                 </MDBDropdownMenu>
-              </MDBDropdown>
+              </MDBDropdown> */}
             </MDBNavItem>
           </MDBNavbarNav>
         </MDBCollapse>
       </MDBNavbar>
-    </Router>
     );
   }
 }

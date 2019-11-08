@@ -1,20 +1,38 @@
 import React from 'react';
-import NavbarPage from "./components/Header/header"
-import FooterPage from "./components/Footer/footer"
+import { Route, Switch, withRouter } from "react-router-dom";
+import Home from "./pages/Home Page/home"
+import CreateProject from "./pages/Create Project/create project"
+import Designers from "./pages/Designers/Designers"
+import Messages from "./pages/Messages/Messages"
+import Profile from "./pages/Profile/Profile"
+
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
+class App extends React.Component {
 
-<NavbarPage />
-<FooterPage />
 
-      
+  render() {
+    return (
 
-      
-    </div>
-  );
+
+      <Switch>
+
+        <Route path='/' exact={true} render={() => { return <Home /> }} />
+        <Route path='/newproject' render={() => { return <CreateProject /> }} />
+        <Route path='/Designerslist' render={() => { return <Designers /> }} />
+        <Route path='/Messages' render={() => { return <Messages /> }} />
+        <Route path='/Profile' render={() => { return <Profile /> }} />
+
+
+
+
+
+
+
+      </Switch>
+
+    )
+  }
 }
 
-export default App;
+export default withRouter(App);;

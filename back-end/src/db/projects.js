@@ -37,6 +37,39 @@ const initializeProjects = async () => {
     }
   };
 
+  const GetProjectByUserId = async id => {
+    try {
+      let stmt = `SELECT * from projects where projects.user_id = ${id}`;
+
+      const rows = await db.all(stmt);
+      const newRows = await Promise.all(rows.map( async row=>{
+        let stmt2 = `SELECT * from images_project where images_project.project_id=${row.project_id}`;
+        const images = await db.all(stmt2);
+        row.images = images;
+      }));
+      console.log(newRows)
+      const user_id = rows;
+      if (!user_id) {
+        throw new Error(` user with user_id = ${id} doesnt exist`);
+      } else return user_id;
+    } catch (err) {
+      throw new Error(`could not get  the user with id = ${id}` + err.message);
+    };
+  };
+
+
+  const getNewestProjects = async() =>{
+    try{
+      let stmt = 'select projects.project_id, projects.title, projects.date, users.user_id, users.name, images_project.title as image  from projects join users join images_project where projects.user_id = users.user_id and images_project.project_id =projects.project_id  group by projects.project_id order by (projects.date) desc limit 4;';
+      const rows = await db.all(stmt);
+      return rows;
+    }
+    catch(err){
+      console.log(err);
+      throw new Error('couldnt retrieve list')
+    }
+  }
+
 
   const deleteProjects = async (id) => {
     try {
@@ -120,7 +153,9 @@ const initializeProjects = async () => {
     createproject,
     getProjects,
     deleteProjects,
-    updateProjects
+    updateProjects, 
+    getNewestProjects,
+    GetProjectByUserId
 
 
   };

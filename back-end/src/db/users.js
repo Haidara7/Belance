@@ -19,6 +19,21 @@ const initializeUsers = async () => {
     }
   };
 
+  const GetUserById = async id => {
+    try {
+      let stmt = `SELECT users.user_id ,users.name,users.email,users.aboutme,users.experience,users.address,users.date , images_profile.image_id,images_profile.title as image FROM users join images_profile where users.user_id = ${id} and images_profile.user_id = users.user_id`;
+
+      const rows = await db.all(stmt);
+
+      const user_id = rows;
+      if (!user_id) {
+        throw new Error(` user with user_id = ${id} doesnt exist`);
+      } else return user_id;
+    } catch (err) {
+      throw new Error(`could not get  the user with id = ${id}` + err.message);
+    };
+  };
+
 
   const addUser = async (props) => {
     const { name, email, password, aboutme, experience, date, address  } = props;
@@ -106,6 +121,7 @@ const initializeUsers = async () => {
 
   const controller3 = {
     getUsers,
+    GetUserById,
     findUser,
     addUser,
     deleteUsers,

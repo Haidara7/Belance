@@ -44,9 +44,21 @@ const start = async () => {
 
     const users_accounts = await controller3.getUsers()
     res.json({
+      success:true,
       data: users_accounts
     })
   });
+
+  app.get('/api/users/:id', async (req, res, next) => {
+
+    try {
+      const { id } = req.params;
+      const result = await controller3.GetUserById(id);
+      res.json({success: true, result});
+  } catch (err) {
+    next(err);
+  }
+});
 
   app.post('/api/adduser', async (req, res, next) => {
 
@@ -89,7 +101,19 @@ const start = async () => {
     }
   });
   ////////////////projects
-
+  app.get('/api/projects/newest', async (req,res,next)=>{
+    try{
+      const result = await controller4.getNewestProjects();
+      res.json({
+        success: true,
+        result
+      })
+    }
+    catch(err)
+    {
+      next(err);
+    }
+  })
   app.post('/api/projects/create', async (req, res, next) => {
     try {
       const { user_id, title, date } = req.body;
@@ -108,6 +132,17 @@ const start = async () => {
       data: projects
     })
   });
+
+  app.get('/api/projects/:id', async (req, res, next) => {
+
+    try {
+      const { id } = req.params;
+      const result = await controller4.GetProjectByUserId(id);
+      res.json({success: true, result});
+  } catch (err) {
+    next(err);
+  }
+});
 
   app.post('/api/projects/delete/:id', async (req, res, next) => {
     console.log("here")
@@ -345,7 +380,11 @@ app.get('/api/projectimg/getlist/:id', async (req, res, next) => {
     })
   });
 
-
+  app.use((err, req, res, next) => {
+    console.error(err);
+    const message = err.message;
+    res.status(500).json({ success: false, message });
+  });
 
   app.listen(5001
     , () => {
