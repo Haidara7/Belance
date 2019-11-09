@@ -1,6 +1,6 @@
 import React from "react";
-import NavbarPage from "../../components/Header/header"
-import FooterPage from "../../components/Footer/footer"
+// import NavbarPage from "../../components/Header/header"
+// import FooterPage from "../../components/Footer/footer"
 import {Link} from 'react-router-dom'
 
 
@@ -34,14 +34,14 @@ class Designers extends React.Component {
     render() {
         return (
             <div>
-                <NavbarPage />
+                {/* <NavbarPage /> */}
 
                 {this.state.getusers.map(x => (<div>
                     <Link to={`/user/${x.user_id}`}>{x.name}</Link>
                 </div>
                 ))}
 
-                <FooterPage />
+                {/* <FooterPage /> */}
             </div>
 
         )

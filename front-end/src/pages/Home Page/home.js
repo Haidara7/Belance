@@ -1,6 +1,6 @@
 import React from 'react';
-import NavbarPage from "../../components/Header/header"
-import FooterPage from "../../components/Footer/footer"
+// import NavbarPage from "../../components/Header/header"
+// import FooterPage from "../../components/Footer/footer"
 
 
 class Home extends React.Component {
@@ -31,13 +31,13 @@ class Home extends React.Component {
     return (
       <div className="App">
 
-        <NavbarPage />
+        {/* <NavbarPage /> */}
         {this.state.newestProducts.map(x => (<div>
           <h2>{x.title}</h2>
           <img src={`http://localhost:5001/images/${x.image}`} />
         </div>
         ))}
-        <FooterPage />
+        {/* <FooterPage /> */}
 
 
 

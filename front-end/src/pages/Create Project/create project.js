@@ -1,6 +1,6 @@
 import React from "react";
-import NavbarPage from "../../components/Header/header"
-import FooterPage from "../../components/Footer/footer"
+// import NavbarPage from "../../components/Header/header"
+// import FooterPage from "../../components/Footer/footer"
 
 
 
@@ -34,7 +34,7 @@ class CreateProject extends React.Component {
     render() {
         return (
             <div>
-                <NavbarPage />
+                {/* <NavbarPage /> */}
 
 
                 CREATE PROJECTS
@@ -45,7 +45,7 @@ class CreateProject extends React.Component {
 
 
 
-                <FooterPage />
+                {/* <FooterPage /> */}
             </div>
 
         )
