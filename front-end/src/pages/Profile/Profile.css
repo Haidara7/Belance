@@ -1,0 +1,7 @@
+.profile_project {
+    display: grid;
+    grid-template-columns: repeat(2 , 1fr);
+    grid-template-rows: repeat(3 , 250px);
+    width: 70%;
+    margin: auto;
+}

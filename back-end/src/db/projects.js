@@ -43,7 +43,7 @@ const initializeProjects = async () => {
 
       const rows = await db.all(stmt);
       const newRows = await Promise.all(rows.map( async row=>{
-        let stmt2 = `SELECT * from images_project where images_project.project_id=${row.project_id}`;
+        let stmt2 = `SELECT images_project.title as image_name from images_project where images_project.project_id=${row.project_id}`;
         const images = await db.all(stmt2);
         row.images = images;
       }));
