@@ -1,4 +1,11 @@
 import React from "react";
+import './users.css'
+
+import {
+    Card, CardImg, CardText, CardBody,
+    CardTitle, CardSubtitle, Button
+  } from 'reactstrap';
+  
 
 
 
@@ -32,32 +39,54 @@ class Users extends React.Component {
 
     render() {
         return (
-            <div>
-                <ul>
+            // <div>
+            //     <ul>
+            //         <img src={`http://localhost:5001/images/${this.state.getuserbyid.image}`} style={{ width: '200px', height: '200' }} alt = ""/>
 
-                    <li> {this.state.getuserbyid.name} </li>
-                    <li>{this.state.getuserbyid.email}</li>
-                    <li> {this.state.getuserbyid.aboutme}</li>
-                    <li> {this.state.getuserbyid.experience}</li>
-                    <li> {this.state.getuserbyid.address}</li>
-                    <li> {this.state.getuserbyid.date}</li>
-                    <li><img src={`http://localhost:5001/images/${this.state.getuserbyid.image}`} /></li>
+            //         <h2>{this.state.getuserbyid.name} </h2>
+            //         <h5>{this.state.getuserbyid.email}</h5>
+            //          <h5>  {this.state.getuserbyid.aboutme}</h5> 
+            //         <h5> {this.state.getuserbyid.experience}</h5>
+            //         <h5> {this.state.getuserbyid.address}</h5>
+            //         <h5> {this.state.getuserbyid.date}</h5>
 
-                </ul>
-
-
+            //     </ul>
 
 
-            </div>
+            // </div>
 
 
+
+
+
+<div class="text-center">
+ 
+<Card >
+  <CardImg  top width="35%" src={`http://localhost:5001/images/${this.state.getuserbyid.image}`} style={{ width: '150px', height: '150px' }}className="text-center" alt = ""/>
+  <CardBody>
+    <CardTitle>{this.state.getuserbyid.name}</CardTitle>
+    <CardText>{this.state.getuserbyid.email}</CardText>
+    <CardSubtitle></CardSubtitle>
+    
+
+
+    <CardText>{this.state.getuserbyid.aboutme}</CardText>
+    <Button className="btn btn-dark">Message</Button>
+    <Button className="btn btn-dark">Message</Button>
+
+  </CardBody>
+</Card>
+</div>
 
         )
 
-
-
     }
 }
+
+
+
+
+
 
 
 

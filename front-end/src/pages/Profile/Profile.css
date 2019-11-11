@@ -1,7 +1,25 @@
-.profile_project {
-    display: grid;
+.container {
+    display: flex;
     grid-template-columns: repeat(2 , 1fr);
     grid-template-rows: repeat(3 , 250px);
-    width: 70%;
-    margin: auto;
+    /* width: 70%;
+    margin: auto; */
 }
+
+
+/* .container-fluid {
+    display: flex;
+    flex-direction: column;
+} */
+
+.projects {
+    /* display: grid; */
+    width: 65%;
+    padding: 10px;
+}
+
+.users {
+    width: 35%;
+    margin: 20px;
+}
+

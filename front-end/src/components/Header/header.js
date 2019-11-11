@@ -2,9 +2,8 @@ import React, { Component } from "react";
 import logo from "./red.png";
 import "./header.css";
 
-import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBDropdown,
-MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon } from "mdbreact";
-import { BrowserRouter as Router } from 'react-router-dom';
+import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse } from "mdbreact";
+// import { BrowserRouter as Router } from 'react-router-dom';
 class NavbarPage extends Component {
 state = {
   isOpen: false
@@ -19,7 +18,7 @@ render() {
       <MDBNavbar color="black" dark expand="md" >
         <MDBNavbarBrand>
           {/* <strong className="white-text">Navbar</strong> */}
-          <MDBNavLink to="/">  <img className="logo" src={logo}/></MDBNavLink>
+          <MDBNavLink to="/">  <img className="logo" src={logo} alt= ""/></MDBNavLink>
 
         </MDBNavbarBrand>
         <MDBNavbarToggler onClick={this.toggleCollapse} />

@@ -34,7 +34,7 @@ class Home extends React.Component {
         {/* <NavbarPage /> */}
         {this.state.newestProducts.map(x => (<div>
           <h2>{x.title}</h2>
-          <img src={`http://localhost:5001/images/${x.image}`} />
+          < img src={`http://localhost:5001/images/${x.image}`} alt="" />
         </div>
         ))}
         {/* <FooterPage /> */}

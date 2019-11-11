@@ -16,29 +16,29 @@ class App extends React.Component {
   render() {
     return (
       <div>
-                        <NavbarPage />
-
-       
-      
-
-
-      <Switch>
-
-        <Route path='/' exact={true} render={() => { return <Home /> }} />
-        <Route path='/newproject' render={() => { return <CreateProject /> }} />
-        <Route path='/Designerslist' render={() => { return <Designers /> }} />
-        <Route path='/Messages' render={() => { return <Messages /> }} />
-        <Route path='/Profile' render={() => { return <Profile /> }} />
+        <NavbarPage />
 
 
 
 
 
+        <Switch>
+
+          <Route path='/' exact={true} render={() => { return <Home /> }} />
+          <Route path='/newproject' render={() => { return <CreateProject /> }} />
+          <Route path='/Designerslist' render={() => { return <Designers /> }} />
+          <Route path='/Messages' render={() => { return <Messages /> }} />
+          <Route path='/Profile' render={() => { return <Profile /> }} />
 
 
-      </Switch>
 
-                      <FooterPage />
+
+
+
+
+        </Switch>
+
+        <FooterPage />
 
       </div>
 
