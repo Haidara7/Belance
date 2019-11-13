@@ -58,9 +58,25 @@ const initializeProjects = async () => {
   };
 
 
+  const GetProjectByProjectId = async id => {
+    try {
+      let stmt = `SELECT projects.title ,projects.project_id, projects.user_id , images_project.title as image FROM projects join images_project where projects.project_id=${id} and images_project.project_id = projects.project_id `;
+
+      const rows = await db.all(stmt);
+
+      const project_id = rows;
+      if (!project_id) {
+        throw new Error(` user with project_id = ${id} doesnt exist`);
+      } else return project_id;
+    } catch (err) {
+      throw new Error(`could not get  the project with id = ${id}` + err.message);
+    };
+  };
+
+
   const getNewestProjects = async() =>{
     try{
-      let stmt = 'select projects.project_id, projects.title, projects.date, users.user_id, users.name, images_project.title as image  from projects join users join images_project where projects.user_id = users.user_id and images_project.project_id =projects.project_id  group by projects.project_id order by (projects.date) desc limit 4;';
+      let stmt = 'select projects.project_id, projects.title, projects.date, users.user_id, users.name, images_project.title as image  from projects join users join images_project where projects.user_id = users.user_id and images_project.project_id =projects.project_id  group by projects.project_id order by (projects.date) desc limit 6;';
       const rows = await db.all(stmt);
       return rows;
     }
@@ -155,7 +171,9 @@ const initializeProjects = async () => {
     deleteProjects,
     updateProjects, 
     getNewestProjects,
-    GetProjectByUserId
+    GetProjectByUserId,
+    GetProjectByProjectId
+
 
 
   };

@@ -28,10 +28,10 @@ render() {
               <MDBNavLink to="/NewProject">Create</MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
-              <MDBNavLink to="Designerslist">Designers</MDBNavLink>
+              <MDBNavLink to="/Designerslist">Designers</MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
-              <MDBNavLink to="Profile">Profile</MDBNavLink>
+              <MDBNavLink to="/Profile">Profile</MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
               {/* <MDBDropdown>

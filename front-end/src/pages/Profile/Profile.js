@@ -22,10 +22,10 @@ class Profile extends React.Component {
                     <Test user_id={2}/>
                 </div> */}
                 <div className="users">
-                    <Users user_id={2}/>
+                    <Users user_id={this.props.user_id}/>
                 </div>
                 <div className="projects">
-                    <Projects  user_id={2}/>
+                    <Projects  user_id={this.props.user_id}/>
                 </div>
 
                 

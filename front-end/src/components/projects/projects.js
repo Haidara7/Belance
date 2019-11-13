@@ -41,6 +41,8 @@ class Projects extends React.Component {
                 {this.state.projects.map(i => (
                     <>
                         <h3 style={{marginTop:20}}>{i.title}</h3>
+                        {i.date}
+
                         <AwesomeSlider cssModule={AwesomeSliderStyles} >
 
                             {i.images.map(image => (
@@ -48,7 +50,9 @@ class Projects extends React.Component {
 
                             ))}
 
+
                         </AwesomeSlider>
+
                     </>
                 ))}
 

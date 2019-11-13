@@ -1,4 +1,8 @@
 import React from 'react';
+import "./home.css"
+import {Link} from 'react-router-dom'
+
+
 // import NavbarPage from "../../components/Header/header"
 // import FooterPage from "../../components/Footer/footer"
 
@@ -29,21 +33,30 @@ class Home extends React.Component {
 
   render() {
     return (
+
+
       <div className="App">
+        <div className="open">
 
-        {/* <NavbarPage /> */}
-        {this.state.newestProducts.map(x => (<div>
-          <h2>{x.title}</h2>
-          < img src={`http://localhost:5001/images/${x.image}`} alt="" />
+          <h1>Projects from creatives you follow and more</h1>
+
         </div>
-        ))}
-        {/* <FooterPage /> */}
+        <div className="pro">
+
+          {this.state.newestProducts.map(x => (<div>
+           <Link to={`/Project-view/${x.project_id}`} ><h2 style={{ marginTop: 66 }}>{x.title}</h2></Link>
+            < img src={`http://localhost:5001/images/${x.image}`} style={{ width: '300px', height: '230px' }} alt="" />
+          </div>
+          ))}
+
+{/* <h2 style={{ marginTop: 66 }}> */}
 
 
 
-
+</div>
+        
       </div>
-    );
+    )
   }
 }
 

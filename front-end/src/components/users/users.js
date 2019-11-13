@@ -1,11 +1,12 @@
 import React from "react";
 import './users.css'
 
+
 import {
     Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle, Button
-  } from 'reactstrap';
-  
+    CardTitle,  Button
+} from 'reactstrap';
+
 
 
 
@@ -59,24 +60,23 @@ class Users extends React.Component {
 
 
 
-<div class="text-center">
- 
-<Card >
-  <CardImg  top width="35%" src={`http://localhost:5001/images/${this.state.getuserbyid.image}`} style={{ width: '150px', height: '150px' }}className="text-center" alt = ""/>
-  <CardBody>
-    <CardTitle>{this.state.getuserbyid.name}</CardTitle>
-    <CardText>{this.state.getuserbyid.email}</CardText>
-    <CardSubtitle></CardSubtitle>
-    
+            <div class="text-center">
 
-
-    <CardText>{this.state.getuserbyid.aboutme}</CardText>
-    <Button className="btn btn-dark">Message</Button>
-    <Button className="btn btn-dark">Message</Button>
-
-  </CardBody>
-</Card>
-</div>
+                <Card >
+                    <CardImg top width="35%" src={`http://localhost:5001/images/${this.state.getuserbyid.image}`} style={{ width: '180px', height: '180px' }} alt="" />
+                    <CardBody>
+                        <h3><CardTitle>{this.state.getuserbyid.name}</CardTitle></h3>
+                        <CardText>{this.state.getuserbyid.email}</CardText>
+                        <CardText>{this.state.getuserbyid.experience}</CardText>
+                        <CardText>{this.state.getuserbyid.aboutme}</CardText>
+                        <CardText>{this.state.getuserbyid.address}</CardText>
+                        <h5>Member since  {this.state.getuserbyid.date}</h5>
+                        <a href ={`/editor`}>
+                        <Button className="btn btn-dark">Edit Profile</Button>
+                        </a>
+                    </CardBody>
+                </Card>
+            </div>
 
         )
 

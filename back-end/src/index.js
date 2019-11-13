@@ -144,6 +144,17 @@ const start = async () => {
   }
 });
 
+app.get('/api/projects/projectid/:id', async (req, res, next) => {
+
+  try {
+    const { id } = req.params;
+    const result = await controller4.GetProjectByProjectId(id);
+    res.json({success: true, result});
+} catch (err) {
+  next(err);
+}
+});
+
   app.post('/api/projects/delete/:id', async (req, res, next) => {
     console.log("here")
     try {
@@ -240,17 +251,23 @@ app.post('/api/profileimg/delete/:id', async (req, res, next) => {
 app.post('/api/projectimg/create', upload.array('photos',10), async (req, res, next) => {
   try {
    // console.log(req.body)
-    const { project_id} = req.body;
-    const title = req['files'].map(item=>{
+
+   const { user_id, title, date } = req.body;
+   console.log("hello", user_id, title, date)
+   const project_id = await controller4.createproject({ user_id, title, date });
+   
+   const imagetitles = req['files'].map(item => {
       return item['filename'];
     })
   
     const result = await controller2.createProjectImg({
-     title, project_id
+     title: imagetitles, project_id
     });
     res.json({success: true, result});
   } catch (err) {
     next(err);
+
+    
   }
 });
 
