@@ -7,15 +7,15 @@ const initializeProjects = async () => {
 
 
   const createproject = async (props) => {
-    const { user_id, title, date } = props;
-    console.log("CreateProjectWith", user_id, title, date)
-    if (!props || !user_id || !title || !date) {
+    const { user_id, title } = props;
+    console.log("CreateProjectWith", user_id, title)
+    if (!props || !user_id || !title ) {
       throw new Error("you must fill all fields");
     }
     try {
       
       const result = await db.run(
-        `INSERT INTO projects (user_id , title, date ) Values ( ${user_id} , '${title}', '${date}')`
+        `INSERT INTO projects (user_id , title, date ) Values ( ${user_id} , '${title}', DATE('now'))`
       );
       const id = result.stmt.lastID;
       return id;
@@ -40,6 +40,7 @@ const initializeProjects = async () => {
   const GetProjectByUserId = async id => {
     try {
       let stmt = `SELECT * from projects where projects.user_id = ${id}`;
+      // SELECT *  , users.user_id from projects join users where users.user_id = ${id} and projects.user_id = ${id}
 
       const rows = await db.all(stmt);
       const newRows = await Promise.all(rows.map( async row=>{

@@ -14,16 +14,16 @@ import verifyToken from "./db/verfiy"
 
 const multerStorage = multer.diskStorage({
   destination: path.join(__dirname, '../public/images'),
-  filename: (req,file, cb)=>{
-    const {originalname} = file;
-    const date =Date.now()
+  filename: (req, file, cb) => {
+    const { originalname } = file;
+    const date = Date.now()
     const filename = `${date}-${originalname}`;
     cb(null, filename)
   }
 
 })
 
-const upload = multer({storage: multerStorage})
+const upload = multer({ storage: multerStorage })
 
 
 
@@ -44,7 +44,7 @@ const start = async () => {
 
     const users_accounts = await controller3.getUsers()
     res.json({
-      success:true,
+      success: true,
       data: users_accounts
     })
   });
@@ -54,11 +54,11 @@ const start = async () => {
     try {
       const { id } = req.params;
       const result = await controller3.GetUserById(id);
-      res.json({success: true, result});
-  } catch (err) {
-    next(err);
-  }
-});
+      res.json({ success: true, result });
+    } catch (err) {
+      next(err);
+    }
+  });
 
   app.post('/api/adduser', async (req, res, next) => {
 
@@ -101,16 +101,15 @@ const start = async () => {
     }
   });
   ////////////////projects
-  app.get('/api/projects/newest', async (req,res,next)=>{
-    try{
+  app.get('/api/projects/newest', async (req, res, next) => {
+    try {
       const result = await controller4.getNewestProjects();
       res.json({
         success: true,
         result
       })
     }
-    catch(err)
-    {
+    catch (err) {
       next(err);
     }
   })
@@ -138,22 +137,22 @@ const start = async () => {
     try {
       const { id } = req.params;
       const result = await controller4.GetProjectByUserId(id);
-      res.json({success: true, result});
-  } catch (err) {
-    next(err);
-  }
-});
+      res.json({ success: true, result });
+    } catch (err) {
+      next(err);
+    }
+  });
 
-app.get('/api/projects/projectid/:id', async (req, res, next) => {
+  app.get('/api/projects/projectid/:id', async (req, res, next) => {
 
-  try {
-    const { id } = req.params;
-    const result = await controller4.GetProjectByProjectId(id);
-    res.json({success: true, result});
-} catch (err) {
-  next(err);
-}
-});
+    try {
+      const { id } = req.params;
+      const result = await controller4.GetProjectByProjectId(id);
+      res.json({ success: true, result });
+    } catch (err) {
+      next(err);
+    }
+  });
 
   app.post('/api/projects/delete/:id', async (req, res, next) => {
     console.log("here")
@@ -172,7 +171,7 @@ app.get('/api/projects/projectid/:id', async (req, res, next) => {
 
     try {
       const { id } = req.params;
-      const { title} = req.body;
+      const { title } = req.body;
       const result = await controller4.updateProjects(id, {
         title
 
@@ -185,161 +184,144 @@ app.get('/api/projects/projectid/:id', async (req, res, next) => {
   });
 
 
-  
-//////////////// PROFILE IMAGE
 
-app.post('/api/profileimg/create',  upload.single('image'), async (req, res, next) => {
-  try {
-   // console.log(req.body)
-    const { user_id} = req.body;
-    const title = req.file && req.file.filename
-    console.log("title",title)
-    const result = await controller1.createProfileImg({
-     title, user_id
-    });
-    res.json({success: true, result});
-  } catch (err) {
-    next(err);
-  }
-});
+  //////////////// PROFILE IMAGE
 
-
-app.get('/api/profileimg/get/:id', async (req, res, next) => {
-  try {
-    const {id} = req.params;
-    const result = await controller1.getprofileimg(id);
-    res.json({success: true, result});
-  } catch (err) {
-    next(err);
-  }
-});
-
-app.post('/api/profileimg/update',  upload.single('image'), async (req, res, next) => {
-  try {
-   // console.log(req.body)
-    const { user_id} = req.body;
-    const title = req.file && req.file.filename
-    console.log("title",title)
-    const result = await controller1.updateProfileImg({
-     title, user_id
-    });
-    res.json({success: true, result});
-  } catch (err) {
-    next(err);
-  }
-});
+  app.post('/api/profileimg/create', upload.single('image'), async (req, res, next) => {
+    try {
+      // console.log(req.body)
+      const { user_id } = req.body;
+      const title = req.file && req.file.filename
+      console.log("title", title)
+      const result = await controller1.createProfileImg({
+        title, user_id
+      });
+      res.json({ success: true, result });
+    } catch (err) {
+      next(err);
+    }
+  });
 
 
-app.post('/api/profileimg/delete/:id', async (req, res, next) => {
-  console.log("here")
+  app.get('/api/profileimg/get/:id', async (req, res, next) => {
+    try {
+      const { id } = req.params;
+      const result = await controller1.getprofileimg(id);
+      res.json({ success: true, result });
+    } catch (err) {
+      next(err);
+    }
+  });
 
-  try {
-    const {id} = req.params;
-    const result = await controller1.deleteProfileIMG(id);
-    res.json({success: true, result});
-    console.log()
-  } catch (err) {
-    next(err);
-  }
-});
-
-
-////////////////////// PROJECT IMG
-
-
-
-app.post('/api/projectimg/create', upload.array('photos',10), async (req, res, next) => {
-  try {
-   // console.log(req.body)
-
-   const { user_id, title, date } = req.body;
-   console.log("hello", user_id, title, date)
-   const project_id = await controller4.createproject({ user_id, title, date });
-   
-   const imagetitles = req['files'].map(item => {
-      return item['filename'];
-    })
-  
-    const result = await controller2.createProjectImg({
-     title: imagetitles, project_id
-    });
-    res.json({success: true, result});
-  } catch (err) {
-    next(err);
-
-    
-  }
-});
+  app.post('/api/profileimg/update', upload.single('image'), async (req, res, next) => {
+    try {
+      // console.log(req.body)
+      const { user_id } = req.body;
+      const title = req.file && req.file.filename
+      console.log("title", title)
+      const result = await controller1.updateProfileImg({
+        title, user_id
+      });
+      res.json({ success: true, result });
+    } catch (err) {
+      next(err);
+    }
+  });
 
 
-app.post('/api/projectimg/update',  upload.single('image'), async (req, res, next) => {
-  try {
-   // console.log(req.body)
-    const { image_id} = req.body;
-    const title = req.file && req.file.filename
-    console.log("title",title)
-    const result = await controller2.updateProjectImg({
-     title, image_id
-    });
-    res.json({success: true, result});
-  } catch (err) {
-    next(err);
-  }
-});
+  app.post('/api/profileimg/delete/:id', async (req, res, next) => {
+    console.log("here")
 
-app.post('/api/projectimg/deletealbum/:id', async (req, res, next) => {
-  console.log("here")
-
-  try {
-    const {id} = req.params;
-    const result = await controller2.deleteProjectImgAlbum(id);
-    res.json({success: true, result});
-    console.log()
-  } catch (err) {
-    next(err);
-  }
-});
-
-app.post('/api/projectimg/deleteimg/:id', async (req, res, next) => {
-  console.log("here")
-
-  try {
-    const {id} = req.params;
-    const result = await controller2.deleteProjectImgById(id);
-    res.json({success: true, result});
-    console.log()
-  } catch (err) {
-    next(err);
-  }
-});
+    try {
+      const { id } = req.params;
+      const result = await controller1.deleteProfileIMG(id);
+      res.json({ success: true, result });
+      console.log()
+    } catch (err) {
+      next(err);
+    }
+  });
 
 
-app.get('/api/projectimg/getlist/:id', async (req, res, next) => {
-  try {
-    const {id} = req.params;
-    const result = await controller2.getprojectimg(id);
-    res.json({success: true, result});
-  } catch (err) {
-    next(err);
-  }
-});
+  ////////////////////// PROJECT IMG
 
 
 
+  app.post('/api/projectimg/create', upload.array('photos', 10), async (req, res, next) => {
+    try {
+      // console.log(req.body)
+
+      const { user_id, title } = req.body;
+      console.log("hello", user_id, title)
+      const project_id = await controller4.createproject({ user_id, title });
+
+      const imagetitles = req['files'].map(item => {
+        return item['filename'];
+      })
+
+      const result = await controller2.createProjectImg({
+        title: imagetitles, project_id
+      });
+      res.json({ success: true, result });
+    } catch (err) {
+      next(err);
 
 
+    }
+  });
 
 
+  app.post('/api/projectimg/update', upload.single('image'), async (req, res, next) => {
+    try {
+      // console.log(req.body)
+      const { image_id } = req.body;
+      const title = req.file && req.file.filename
+      console.log("title", title)
+      const result = await controller2.updateProjectImg({
+        title, image_id
+      });
+      res.json({ success: true, result });
+    } catch (err) {
+      next(err);
+    }
+  });
+
+  app.post('/api/projectimg/deletealbum/:id', async (req, res, next) => {
+    console.log("here")
+
+    try {
+      const { id } = req.params;
+      const result = await controller2.deleteProjectImgAlbum(id);
+      res.json({ success: true, result });
+      console.log()
+    } catch (err) {
+      next(err);
+    }
+  });
+
+  app.post('/api/projectimg/deleteimg/:id', async (req, res, next) => {
+    console.log("here")
+
+    try {
+      const { id } = req.params;
+      const result = await controller2.deleteProjectImgById(id);
+      res.json({ success: true, result });
+      console.log()
+    } catch (err) {
+      next(err);
+    }
+  });
 
 
-
-
-
-
-
-
-
-
+  app.get('/api/projectimg/getlist/:id', async (req, res, next) => {
+    try {
+      const { id } = req.params;
+      const result = await controller2.getprojectimg(id);
+      res.json({ success: true, result });
+    } catch (err) {
+      next(err);
+    }
+  });
 
   app.post('/api/login', async (req, res) => {
     console.log("here")

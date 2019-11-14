@@ -37,7 +37,7 @@ class Designers extends React.Component {
                 {/* <NavbarPage /> */}
 
                 {this.state.getusers.map(x => (<div>
-                    <Link to={`/user/${x.user_id}`}>{x.name}</Link>
+                    <Link to={`/user-view/${x.user_id}`}>{x.name}</Link>
                 </div>
                 ))}
 

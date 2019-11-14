@@ -7,6 +7,7 @@ import CreateProject from "./pages/Create Project/create project"
 import Designers from "./pages/Designers/Designers"
 import Messages from "./pages/Messages/Messages"
 import Profile from "./pages/Profile/Profile"
+import User_view from "./pages/User_view/user_view"
 
 
 import './App.css';
@@ -38,6 +39,8 @@ class App extends React.Component {
 
           <Route path='/Profile' render={(props) => { return <Profile user_id={this.state.user_id} {...props}/> }} />
           <Route path='/Project-view/:id' render={(props) => { return <Project_view {...props}/> }} />
+          <Route path='/user-view/:id' render={(props) => { return <User_view {...props}/> }} />
+
 
           {/* <Route path='/Login' render = {(props=> <Login setUserId={this.setUserId} {...props}/>)}/> */}
 
