@@ -77,7 +77,7 @@ const initializeProjects = async () => {
 
   const getNewestProjects = async() =>{
     try{
-      let stmt = 'select projects.project_id, projects.title, projects.date, users.user_id, users.name, images_project.title as image  from projects join users join images_project where projects.user_id = users.user_id and images_project.project_id =projects.project_id  group by projects.project_id order by (projects.date) desc limit 6;';
+      let stmt = 'select projects.project_id, projects.title, projects.date, users.user_id, users.name, images_project.title as image  from projects join users join images_project where projects.user_id = users.user_id and images_project.project_id =projects.project_id  group by projects.project_id order by (projects.date) desc limit 8;';
       const rows = await db.all(stmt);
       return rows;
     }

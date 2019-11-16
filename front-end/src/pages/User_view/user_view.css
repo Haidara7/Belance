@@ -1,0 +1,14 @@
+.awssld__bullets {
+    display: none;
+    }
+    
+     .awssld__content img {
+         /* width: 350px; */
+         float:right
+     }
+
+     .prouser {
+        /* display: grid; */
+        width: 65%;
+        padding: 10px;
+    }

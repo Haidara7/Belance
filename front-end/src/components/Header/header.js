@@ -5,26 +5,26 @@ import "./header.css";
 import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse } from "mdbreact";
 // import { BrowserRouter as Router } from 'react-router-dom';
 class NavbarPage extends Component {
-state = {
-  isOpen: false
-};
+  state = {
+    isOpen: false
+  };
 
-toggleCollapse = () => {
-  this.setState({ isOpen: !this.state.isOpen });
-}
+  toggleCollapse = () => {
+    this.setState({ isOpen: !this.state.isOpen });
+  }
 
-render() {
-  return (
+  render() {
+    return (
       <MDBNavbar color="black" dark expand="md" >
         <MDBNavbarBrand>
           {/* <strong className="white-text">Navbar</strong> */}
-          <MDBNavLink to="/">  <img className="logo" src={logo} alt= ""/></MDBNavLink>
+          <MDBNavLink to="/">  <img className="logo" src={logo} alt="" /></MDBNavLink>
 
         </MDBNavbarBrand>
         <MDBNavbarToggler onClick={this.toggleCollapse} />
         <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
           <MDBNavbarNav left>
-          <MDBNavItem>
+            <MDBNavItem>
               <MDBNavLink to="/NewProject">Create</MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
@@ -49,12 +49,12 @@ render() {
           </MDBNavbarNav>
           <MDBNavbarNav right>
             <MDBNavItem>
-              <MDBNavLink className="waves-effect waves-light" to="Messages">
-              <i class="far fa-envelope"></i>              </MDBNavLink>
+              <MDBNavLink className="waves-effect waves-light" to="/Messages">
+                <i className="far fa-envelope message"></i>              </MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
               <MDBNavLink className="waves-effect waves-light" to="#!">
-              <i class="fas fa-sign-out-alt"></i>              </MDBNavLink>
+                <i className="fas fa-sign-out-alt sign"></i>              </MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
               {/* <MDBDropdown>

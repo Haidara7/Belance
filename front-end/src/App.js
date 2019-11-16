@@ -8,10 +8,11 @@ import Designers from "./pages/Designers/Designers"
 import Messages from "./pages/Messages/Messages"
 import Profile from "./pages/Profile/Profile"
 import User_view from "./pages/User_view/user_view"
+import Project_view from './pages/Project_view/Project_view';
+
 
 
 import './App.css';
-import Project_view from './pages/Project_view/Project_view';
 
 class App extends React.Component {
  state={

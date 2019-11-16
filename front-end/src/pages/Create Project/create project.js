@@ -34,7 +34,7 @@ class CreateProject extends React.Component {
     let files = event.target.files
     let err = [] // create empty array
     const types = ['image/png', 'image/jpeg', 'image/gif']
-    for (var x = 0; x < files.length; x++) {
+    for (let x = 0; x < files.length; x++) {
       if (types.every(type => files[x].type !== type)) {
         err[x] = files[x].type + ' is not a supported format\n';
         // assign message to array
@@ -51,7 +51,7 @@ class CreateProject extends React.Component {
     let files = event.target.files
     let size = 2000000
     let err = [];
-    for (var x = 0; x < files.length; x++) {
+    for (let x = 0; x < files.length; x++) {
       if (files[x].size > size) {
         err[x] = files[x].type + 'is too large, please pick a smaller file\n';
       }
@@ -79,10 +79,10 @@ class CreateProject extends React.Component {
 
   onClickHandler = () => {
     const data = new FormData()
-    for (var x = 0; x < this.state.selectedFile.length; x++) {
+    for (let x = 0; x < this.state.selectedFile.length; x++) {
       data.append('photos', this.state.selectedFile[x]);
     }
-    data.append('user_id', 1);
+    data.append('user_id', 2);
     data.append('title', 'hello world')
     axios.post("http://localhost:5001/api/projectimg/create", data, {
       onUploadProgress: ProgressEvent => {
@@ -111,7 +111,7 @@ class CreateProject extends React.Component {
 
             <div class="form-group files">
               <label>Upload Your File </label>
-              <input type="file" class="form-control" multiple onChange={this.onChangeHandler} />
+              <input type="file" className="form-control btn btn-light" multiple onChange={this.onChangeHandler} />
 
 
             </div>

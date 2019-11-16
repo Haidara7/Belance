@@ -1,16 +1,49 @@
 .pro {
     display: grid;
-    grid-template-columns: repeat(3 , 1fr);
-    padding: 10px;
-    margin: 10px;
-    
-    
+    grid-template-columns: repeat(4, 1fr); 
+    grid-gap: 35px;
+    padding: 20px;
+    /* width: 95%;
+    margin: auto;
+    background: white;
+    box-shadow: 3px 3px 20px black; */
+  
 }
 
-.open {
-    margin: 20px;
+.pro img {
+    cursor: pointer;
+    transition:  all ease 0.5s;
 }
+.pro img:hover {
+    box-shadow: 1px 1px 10px black;
+}
+
 
 .open h1 {
-    font-family: Arial, Helvetica, sans-serif;
+    margin : 10px;
+    padding: 20px;
+    
+font-size: 30px;
+    font-family: 'Teko', sans-serif;
+
+
 }
+
+.pro {
+    color: #b51212;
+    font-family: 'Chau Philomene One', sans-serif;
+    text-align: center;
+    
+}
+.pro p {
+    color:black;
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+
+    
+}
+
+.pro h2 {
+    font-size: 25px;
+}
+    

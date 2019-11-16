@@ -1,6 +1,6 @@
 import React from 'react';
 import "./home.css"
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 
 // import NavbarPage from "../../components/Header/header"
@@ -29,13 +29,14 @@ class Home extends React.Component {
       console.log(err)
     }
 
+
   }
 
   render() {
     return (
 
 
-      <div className="App">
+      <div className="App_home">
         <div className="open">
 
           <h1>Projects from creatives you follow and more</h1>
@@ -44,17 +45,19 @@ class Home extends React.Component {
         <div className="pro">
 
           {this.state.newestProducts.map(x => (<div>
-           <Link to={`/Project-view/${x.project_id}`} ><h2 style={{ marginTop: 66 }}>{x.title}</h2></Link>
-            < img src={`http://localhost:5001/images/${x.image}`} style={{ width: '300px', height: '230px' }} alt="" />
+            <h2 style={{ marginTop: 66 }}>{x.title}</h2>
+            <Link to={`/user-view/${x.user_id}`}><p >Ownerd By: {x.name}</p></Link>
+            <p>Posted in: {x.date}</p>
+            <Link to={`/Project-view/${x.project_id}`} >< img src={`http://localhost:5001/images/${x.image}`} style={{ width: '300px', height: '230px' }} alt="" /></Link>
           </div>
           ))}
 
-{/* <h2 style={{ marginTop: 66 }}> */}
+          {/* <h2 style={{ marginTop: 66 }}> */}
 
 
 
-</div>
-        
+        </div>
+
       </div>
     )
   }

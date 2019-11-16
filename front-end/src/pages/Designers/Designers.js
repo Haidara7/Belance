@@ -2,6 +2,7 @@ import React from "react";
 // import NavbarPage from "../../components/Header/header"
 // import FooterPage from "../../components/Footer/footer"
 import {Link} from 'react-router-dom'
+import "./Designers.css"
 
 
 
@@ -33,11 +34,16 @@ class Designers extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className = "designers">
                 {/* <NavbarPage /> */}
 
                 {this.state.getusers.map(x => (<div>
-                    <Link to={`/user-view/${x.user_id}`}>{x.name}</Link>
+                    <Link to={{
+                        pathname:`/user-view/${x.user_id}`,
+                        state:{isTheUser:false}}
+                    }
+                    ><p>{x.name}</p></Link>
+                    {x.image}
                 </div>
                 ))}
 

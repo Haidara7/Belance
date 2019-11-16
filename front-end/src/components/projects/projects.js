@@ -2,6 +2,8 @@ import React from "react";
 import AwesomeSlider from 'react-awesome-slider';
 import AwesomeSliderStyles from 'react-awesome-slider/src/styles';
 import "./projects.css"
+import {Link} from 'react-router-dom'
+
 
 
 
@@ -37,10 +39,10 @@ class Projects extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className = "ff">
                 {this.state.projects.map(i => (
                     <>
-                        <h3 style={{marginTop:20}}>{i.title}</h3>
+           <Link to={`/Project-view/${i.project_id}`} ><h2 style={{ marginTop: 66 }}>{i.title}</h2></Link>
                         {i.date}
 
                         <AwesomeSlider cssModule={AwesomeSliderStyles} >
