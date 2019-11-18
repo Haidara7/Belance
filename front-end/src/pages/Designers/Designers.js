@@ -1,7 +1,7 @@
 import React from "react";
 // import NavbarPage from "../../components/Header/header"
 // import FooterPage from "../../components/Footer/footer"
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import "./Designers.css"
 
 
@@ -19,7 +19,7 @@ class Designers extends React.Component {
             const result = await response.json();
             console.log(result)
             if (result.success) {
-                
+
                 const getusers = result.data;
                 this.setState({ getusers })
             }
@@ -34,20 +34,20 @@ class Designers extends React.Component {
 
     render() {
         return (
-            <div className = "designers">
-                {/* <NavbarPage /> */}
+            <div className="designers">
 
                 {this.state.getusers.map(x => (<div>
                     <Link to={{
-                        pathname:`/user-view/${x.user_id}`,
-                        state:{isTheUser:false}}
+                        pathname: `/user-view/${x.user_id}`,
+                        state: { isTheUser: false }
                     }
-                    ><p>{x.name}</p></Link>
-                    {x.image}
-                </div>
-                ))}
+                    }
+                    ><h2 style={{ marginTop: 66 }}>{x.name}</h2></Link>
+                    <img src={`http://localhost:5001/images/${x.image}`} style={{ width: '180px', height: '180px' }} alt="" />
 
-                {/* <FooterPage /> */}
+                </div>
+                ))} 
+
             </div>
 
         )

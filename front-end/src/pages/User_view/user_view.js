@@ -66,11 +66,11 @@ class User_view extends React.Component {
             <div className="container">
 
 
-                <div class="text-center">
+                <div class="text-center1">
 
                     <Card >
                         <CardImg top width="35%" src={`http://localhost:5001/images/${this.state.getuserbyid.image}`} style={{ width: '180px', height: '180px' }} alt="" />
-                        <CardBody>
+                        <CardBody style={{textAlign:"center"}}>
                             <h3><CardTitle>{this.state.getuserbyid.name}</CardTitle></h3>
                             <CardText>{this.state.getuserbyid.email}</CardText>
                             <CardText>{this.state.getuserbyid.experience}</CardText>

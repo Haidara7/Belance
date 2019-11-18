@@ -38,7 +38,7 @@ class Project_view extends React.Component {
 
 
 
-                    <img src={`http://localhost:5001/images/${i.image}`} alt= "" />
+                    <img src={`http://localhost:5001/images/${i.image}`} style={{ width: '1080px', height: '720px' }}  alt= "" />
 
 
 

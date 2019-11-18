@@ -9,7 +9,7 @@ const initializeUsers = async () => {
 
   const getUsers = async props => {
     try {
-      let stmt = `SELECT * FROM users`;
+      let stmt = `select users.* , images_profile.title as image from users join images_profile where users.user_id = images_profile.user_id`;
       const rows = await db.all(stmt);
       return rows;
     }

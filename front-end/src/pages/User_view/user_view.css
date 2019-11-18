@@ -1,14 +1,43 @@
-.awssld__bullets {
+/* .awssld__bullets {
     display: none;
+    } */
+
+    .container {
+        display: flex;
+        grid-template-columns: repeat(2 , 1fr);
+        grid-template-rows: repeat(3 , 250px);
+        /* width: 70%;
+        margin: auto; */
     }
     
-     .awssld__content img {
-         /* width: 350px; */
+     /* .awssld__content img {
+         width: 350px;
          float:right
-     }
+     } */
 
      .prouser {
         /* display: grid; */
         width: 65%;
         padding: 10px;
     }
+
+  .text-center1{
+    width: 35%;
+    margin: 20px;
+  }
+
+  
+
+.awssld__bullets {
+display: none;
+}
+
+ .awssld__content img {
+     /* width: 350px; */
+     float:right
+ }
+
+ .prouser h2 {
+     color: #b51212;
+     font-family: 'Chau Philomene One', sans-serif;
+ }

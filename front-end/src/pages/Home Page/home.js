@@ -39,14 +39,14 @@ class Home extends React.Component {
       <div className="App_home">
         <div className="open">
 
-          <h1>Projects from creatives you follow and more</h1>
+          <h1>Projects from creatives you follow on Belancelb platform</h1>
 
         </div>
         <div className="pro">
 
           {this.state.newestProducts.map(x => (<div>
             <h2 style={{ marginTop: 66 }}>{x.title}</h2>
-            <Link to={`/user-view/${x.user_id}`}><p >Ownerd By: {x.name}</p></Link>
+            <Link to={`/user-view/${x.user_id}`}><p >Owned By: {x.name}</p></Link>
             <p>Posted in: {x.date}</p>
             <Link to={`/Project-view/${x.project_id}`} >< img src={`http://localhost:5001/images/${x.image}`} style={{ width: '300px', height: '230px' }} alt="" /></Link>
           </div>

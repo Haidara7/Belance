@@ -39,7 +39,7 @@ const initializeProjects = async () => {
 
   const GetProjectByUserId = async id => {
     try {
-      let stmt = `SELECT * from projects where projects.user_id = ${id}`;
+      let stmt = `SELECT * from projects where projects.user_id = ${id} order by (projects.date) desc`;
       // SELECT *  , users.user_id from projects join users where users.user_id = ${id} and projects.user_id = ${id}
 
       const rows = await db.all(stmt);
