@@ -9,8 +9,14 @@ const FooterPage = () => {
           <MDBCol md="6">
            
           </MDBCol>
-          <MDBCol lg="2"  md="6">
-          <MDBNavLink className="waves-effect waves-light" to="#!">
+        
+         
+
+      
+        </MDBRow>
+      </MDBContainer>
+      <div className="footer-copyright text-center py-3">
+      <MDBNavLink className="waves-effect waves-light" to="#!">
                 <MDBIcon fab icon="twitter" />
                 
 
@@ -27,12 +33,6 @@ const FooterPage = () => {
 
               </MDBNavLink>
 
-
-           
-          </MDBCol>
-        </MDBRow>
-      </MDBContainer>
-      <div className="footer-copyright text-center py-3">
         <MDBContainer fluid>
           &copy; {new Date().getFullYear()} Copyright: <a href="https://www.MDBootstrap.com"> Belancelb.com </a>
         </MDBContainer>

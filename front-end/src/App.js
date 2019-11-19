@@ -3,13 +3,14 @@ import { Route, Switch, withRouter } from "react-router-dom";
 import NavbarPage from "./components/Header/header"
 import FooterPage from "./components/Footer/footer"
 import Home from "./pages/Home Page/home"
-// import CreateProject from "./pages/Create Project/create project"
+import CreateProject from "./pages/Create Project/create project"
 import Designers from "./pages/Designers/Designers"
-import Messages from "./pages/Messages/Messages"
+import Messages from  "./pages/Messages/Messages"
 import Profile from "./pages/Profile/Profile"
 import User_view from "./pages/User_view/user_view"
 import Project_view from './pages/Project_view/Project_view';
-import Test from './components/test'
+import Login from './components/Login/login'
+// import Test from './components/test'
 
 
 
@@ -35,8 +36,8 @@ class App extends React.Component {
         <Switch>
 
           <Route path='/' exact={true} render={() => { return <Home /> }} />
-          {/* <Route path='/newproject' render={() => { return <CreateProject /> }} /> */}
-          <Route path='/newproject' render={() => { return <Test /> }} />
+          <Route path='/newproject' render={() => { return <CreateProject /> }} />
+          {/* <Route path='/newproject' render={() => { return <Test /> }} /> */}
 
           <Route path='/Designerslist' render={() => { return <Designers /> }} />
           <Route path='/Messages' render={() => { return <Messages /> }} />
@@ -46,7 +47,7 @@ class App extends React.Component {
           <Route path='/user-view/:id' render={(props) => { return <User_view {...props}/> }} />
 
 
-          {/* <Route path='/Login' render = {(props=> <Login setUserId={this.setUserId} {...props}/>)}/> */}
+          <Route path='/Login' render = {(props=> <Login setUserId={this.setUserId} {...props}/>)}/>
 
 
 

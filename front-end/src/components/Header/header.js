@@ -48,6 +48,10 @@ class NavbarPage extends Component {
             </MDBNavItem>
           </MDBNavbarNav>
           <MDBNavbarNav right>
+          <MDBNavItem>
+              <MDBNavLink className="waves-effect waves-light" to="/Login">
+                <i className="Sign_in">SIGN IN</i>              </MDBNavLink>
+            </MDBNavItem>
             <MDBNavItem>
               <MDBNavLink className="waves-effect waves-light" to="/Messages">
                 <i className="far fa-envelope message"></i>              </MDBNavLink>
