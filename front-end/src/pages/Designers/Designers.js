@@ -34,15 +34,16 @@ class Designers extends React.Component {
 
     render() {
         return (
-            <div className="designers">
+            <div className="designers" style={{display:'flex', flexWrap:'wrap'}}>
 
-                {this.state.getusers.map(x => (<div>
+                {this.state.getusers.map(x => (<div style={{width:'30%', margin:'10px', alignSelf:'center'}}>
                     <Link to={{
                         pathname: `/user-view/${x.user_id}`,
                         state: { isTheUser: false }
                     }
                     }
                     ><h2 style={{ marginTop: 66 }}>{x.name}</h2></Link>
+                    <h3>{x.aboutme}</h3>
                     <img src={`http://localhost:5001/images/${x.image}`} style={{ width: '180px', height: '180px' }} alt="" />
 
                 </div>

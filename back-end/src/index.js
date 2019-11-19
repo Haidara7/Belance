@@ -9,7 +9,7 @@ import multer from 'multer'
 
 import path from 'path'
 import verifyToken from "./db/verfiy"
-//import jwt from 'jsonwebtoken'
+import jwt from 'jsonwebtoken'
 
 
 const multerStorage = multer.diskStorage({
@@ -326,7 +326,7 @@ const start = async () => {
   app.post('/api/login', async (req, res) => {
     console.log("here")
     const user = {
-      first_name: req.body.first_name,
+      email: req.body.email,
       password: req.body.password
     }
     console.log(user)
@@ -356,28 +356,7 @@ const start = async () => {
    * @return {json} rows - array of contacts
    */
 
-  app.post('/api/posts', verifyToken, (req, res) => {
-    console.log(req.token);
-    //const text = req.body.text
-    // console.log(token);
-    jwt.verify(req.token, 'secretkey', (err, authData) => {
-      if (err) {
-        res.json({
-          message: "not verified",
-          err
-        })
-        //res.sendStatus(403);
-
-      } else {
-        //const result = await controller3.addUser(text)
-
-        res.json({
-          message: "verified",
-          authData
-        });
-      }
-    })
-  });
+ 
 
   app.use((err, req, res, next) => {
     console.error(err);

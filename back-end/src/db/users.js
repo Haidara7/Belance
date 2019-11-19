@@ -87,9 +87,9 @@ const initializeUsers = async () => {
 };
 
   const findUser = async props => {
-    const { name, password } = props;
+    const { email, password } = props;
     try {
-      const stmt = SQL`SELECT * FROM users WHERE name = ${name} AND password = ${password}`;
+      const stmt = SQL`SELECT * FROM users WHERE email = ${email} AND password = ${password}`;
       const rows = await db.all(stmt);
       const user = rows[0]
       if (!user) {

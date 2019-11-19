@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import logo from "./red.png";
 import "./header.css";
+import IfAuthenticated from "../IfAuthenticated/IfAuthenticated"
 
 import { MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse } from "mdbreact";
 // import { BrowserRouter as Router } from 'react-router-dom';
@@ -24,15 +25,19 @@ class NavbarPage extends Component {
         <MDBNavbarToggler onClick={this.toggleCollapse} />
         <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
           <MDBNavbarNav left>
+          <IfAuthenticated token = {this.props.token}>
             <MDBNavItem>
               <MDBNavLink to="/NewProject">Create</MDBNavLink>
             </MDBNavItem>
+            </IfAuthenticated>
             <MDBNavItem>
               <MDBNavLink to="/Designerslist">Designers</MDBNavLink>
             </MDBNavItem>
+            <IfAuthenticated token = {this.props.token}>
             <MDBNavItem>
               <MDBNavLink to="/Profile">Profile</MDBNavLink>
             </MDBNavItem>
+            </IfAuthenticated>
             <MDBNavItem>
               {/* <MDBDropdown>
                 <MDBDropdownToggle nav caret>
@@ -52,10 +57,13 @@ class NavbarPage extends Component {
               <MDBNavLink className="waves-effect waves-light" to="/Login">
                 <i className="Sign_in">SIGN IN</i>              </MDBNavLink>
             </MDBNavItem>
+            
+
             <MDBNavItem>
               <MDBNavLink className="waves-effect waves-light" to="/Messages">
                 <i className="far fa-envelope message"></i>              </MDBNavLink>
             </MDBNavItem>
+
             <MDBNavItem>
               <MDBNavLink className="waves-effect waves-light" to="#!">
                 <i className="fas fa-sign-out-alt sign"></i>              </MDBNavLink>
