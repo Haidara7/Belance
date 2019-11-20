@@ -1,5 +1,7 @@
 import React from "react";
 
+import "./Project_view.css"
+
 
 
 class Project_view extends React.Component {
@@ -32,13 +34,13 @@ class Project_view extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className= 'projectview'>
                 {this.state.getprojectbyprojectid.map(i => (
 
 
 
 
-                    <img src={`http://localhost:5001/images/${i.image}`} style={{ width: '1080px', height: '720px' }}  alt= "" />
+                    <img src={`http://localhost:5001/images/${i.image}`}   alt= "" />
 
 
 

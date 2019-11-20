@@ -58,11 +58,12 @@ class NavbarPage extends Component {
                 <i className="Sign_in">SIGN IN</i>              </MDBNavLink>
             </MDBNavItem>
             
-
+            <IfAuthenticated token = {this.props.token}>
             <MDBNavItem>
               <MDBNavLink className="waves-effect waves-light" to="/Messages">
                 <i className="far fa-envelope message"></i>              </MDBNavLink>
             </MDBNavItem>
+            </IfAuthenticated>
 
             <MDBNavItem>
               <MDBNavLink className="waves-effect waves-light" to="#!">

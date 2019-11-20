@@ -26,6 +26,7 @@ class Projects extends React.Component {
 
                 const projects = result.result;
                 this.setState({ projects })
+                
             }
             else
                 console.log(result.message)

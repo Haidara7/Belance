@@ -44,10 +44,11 @@ class Login extends React.Component {
                 body: JSON.stringify(body)
             })
             const data = await response.json();
+            console.log(data)
             this.props.setUser({
                 token: data.token,
-                user_id: data.user.user_id,
-                user: data.user
+                user_id: data.check.user_id,
+                user: data.check
             })
             this.props.history.push('/')
 

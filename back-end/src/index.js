@@ -338,7 +338,7 @@ const start = async () => {
 
         res.json({
           token,
-          user
+          check
         });
       });
     }

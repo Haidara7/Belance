@@ -38,7 +38,7 @@ class App extends React.Component {
           <SecuredRoute
               path="/newproject"
               render={props => (
-                <CreateProject {...props} onSubmit={this.onSubmit} />
+                <CreateProject {...props} onSubmit={this.onSubmit} user_id={this.state.user.user_id} />
               )}
               token={this.state.token}
             />
@@ -57,7 +57,7 @@ class App extends React.Component {
                <SecuredRoute
               path="/Profile"
               render={props => (
-                <Profile {...props} onSubmit={this.onSubmit} />
+                <Profile {...props} onSubmit={this.onSubmit} user_id={this.state.user.user_id} />
               )}
               token={this.state.token}
             />

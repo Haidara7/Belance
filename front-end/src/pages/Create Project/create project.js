@@ -100,7 +100,7 @@ class CreateProject extends React.Component {
     for (let x = 0; x < this.state.selectedFile.length; x++) {
       data.append('photos', this.state.selectedFile[x]);
     }
-    data.append('user_id', 2);
+    data.append('user_id',this.props.user_id);
     data.append("title", this.state.title)
     // data.append('title', 'hello world')
     // debugger;

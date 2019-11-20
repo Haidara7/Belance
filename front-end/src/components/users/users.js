@@ -21,7 +21,7 @@ class Users extends React.Component {
     async componentDidMount() {
 
         try {
-            const response = await fetch('http://localhost:5001/api/users/3');
+            const response = await fetch(`http://localhost:5001/api/users/${this.props.user_id}`);
             const result = await response.json();
             console.log(result)
             if (result.success) {

@@ -34,9 +34,9 @@ class Designers extends React.Component {
 
     render() {
         return (
-            <div className="designers" style={{display:'flex', flexWrap:'wrap'}}>
+            <div className="designers" >
 
-                {this.state.getusers.map(x => (<div style={{width:'30%', margin:'10px', alignSelf:'center'}}>
+                {this.state.getusers.map(x => (<div >
                     <Link to={{
                         pathname: `/user-view/${x.user_id}`,
                         state: { isTheUser: false }
